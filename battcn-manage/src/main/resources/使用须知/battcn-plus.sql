@@ -100,7 +100,7 @@ CREATE TABLE `t_sys_menu` (
 	`gmt_create` datetime DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
 	`gmt_modified` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '最后修改时间',
 	PRIMARY KEY (`id`),
-	KEY `FK_Reference_17` (`pater_id`),
+	KEY `FK_Reference` (`pater_id`),
 	CONSTRAINT `t_sys_menu_ibfk_1` FOREIGN KEY (`pater_id`) REFERENCES `t_sys_menu` (`id`)
 ) ENGINE = INNODB DEFAULT CHARSET = utf8 COMMENT '菜单表';
 
@@ -118,7 +118,7 @@ CREATE TABLE `t_sys_operate` (
 	`icon` VARCHAR (50) DEFAULT NULL COMMENT '图标',
 	`remark` VARCHAR (2000) DEFAULT NULL COMMENT '备注',
 	`ordno` INT (11) DEFAULT NULL COMMENT '排序号',
-	`isshow` INT (1) NOT NULL COMMENT '是否显示出来',
+	`display` INT (1) NOT NULL COMMENT '是否显示出来',
 	`gmt_create` datetime DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
 	`gmt_modified` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '最后修改时间',
 	PRIMARY KEY (`id`),
@@ -139,20 +139,18 @@ CREATE TABLE `t_sys_role_operate` (
 	`gmt_create` datetime DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
 	`gmt_modified` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '最后修改时间',
 	PRIMARY KEY (`role_id`, `operate_id`),
-	KEY `operate_id` (`operate_id`),
-	CONSTRAINT `t_sys_role_operate_ibfk_1` FOREIGN KEY (`role_id`) REFERENCES `t_sys_role` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-	CONSTRAINT `t_sys_role_operate_ibfk_2` FOREIGN KEY (`operate_id`) REFERENCES `t_sys_operate` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+	KEY `operate_id` (`operate_id`)
 ) ENGINE = INNODB CHARSET = utf8;
 
 -- ----------------------------
 -- Procedure structure for showTreeNodes_menu
 -- ----------------------------
 DROP PROCEDURE
-IF EXISTS `showTreeNodes_menu`;
+IF EXISTS `refreshTreeNodes`;
 DELIMITER ;;
 
 
-CREATE DEFINER = `root`@`localhost` PROCEDURE `showTreeNodes_menu` ()
+CREATE DEFINER = `root`@`localhost` PROCEDURE `refreshTreeNodes` ()
 BEGIN
 
 DECLARE LEVEL INT ;
