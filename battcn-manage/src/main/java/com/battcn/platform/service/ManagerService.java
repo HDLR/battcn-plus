@@ -9,5 +9,7 @@ import com.github.pagehelper.PageInfo;
 public interface ManagerService extends BaseService<Manager>{
 	
 	PageInfo<ManagerDto> listManagerByName(DataGrid grid, String name,String account);
+	
+	ManagerDto selectManagerByAccount(String account);
 
 }

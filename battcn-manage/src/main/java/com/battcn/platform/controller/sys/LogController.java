@@ -18,7 +18,7 @@ import io.swagger.annotations.ApiResponses;
 import springfox.documentation.annotations.ApiIgnore;
 
 @Controller
-@RequestMapping("/log")
+@RequestMapping("/sys/log")
 @ApiIgnore
 public class LogController {
 

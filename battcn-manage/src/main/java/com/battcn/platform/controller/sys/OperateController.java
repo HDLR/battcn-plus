@@ -23,20 +23,19 @@ import com.google.common.collect.Lists;
 import springfox.documentation.annotations.ApiIgnore;
 
 @Controller
-@RequestMapping("/operate")
+@RequestMapping("/sys/operate")
+@ApiIgnore
 public class OperateController extends BaseController {
 	@Autowired
 	MenuService menuService;
 	@Autowired
 	OperateService operateService;
 	
-	@ApiIgnore
 	@GetMapping("/list")
 	public String list() {
 		return "sys/operate/list";
 	}
 
-	@ApiIgnore
 	@GetMapping(value = "/edit")
 	public String edit(Integer id) {
 		if (id != null) {

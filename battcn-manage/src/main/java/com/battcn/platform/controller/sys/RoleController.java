@@ -21,7 +21,8 @@ import com.github.pagehelper.PageInfo;
 import springfox.documentation.annotations.ApiIgnore;
 
 @Controller
-@RequestMapping("/role")
+@RequestMapping("/sys/role")
+@ApiIgnore
 public class RoleController extends BaseController {
 
 	@Autowired
@@ -30,7 +31,6 @@ public class RoleController extends BaseController {
 	MenuService menuService;
 	
 
-	@ApiIgnore
 	@GetMapping("/list")
 	public String list() {
 		return "sys/role/list";
@@ -43,7 +43,6 @@ public class RoleController extends BaseController {
 		return "sys/role/permissions";
 	}
 
-	@ApiIgnore
 	@GetMapping(value = "/edit")
 	public String edit(Integer id) {
 		if (id != null) {

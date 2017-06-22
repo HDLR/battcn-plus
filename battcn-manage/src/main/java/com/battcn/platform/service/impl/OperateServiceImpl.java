@@ -7,6 +7,7 @@ import com.battcn.framework.mybatis.page.DataGrid;
 import com.battcn.framework.mybatis.service.impl.BaseServiceImpl;
 import com.battcn.platform.mapper.OperateMapper;
 import com.battcn.platform.pojo.dto.OperateDto;
+import com.battcn.platform.pojo.dto.ShiroPermission;
 import com.battcn.platform.pojo.po.Operate;
 import com.battcn.platform.service.OperateService;
 import com.github.pagehelper.PageHelper;
@@ -29,6 +30,11 @@ public class OperateServiceImpl extends BaseServiceImpl<Operate> implements Oper
 		grid.getOrderBy();
 		return PageHelper.startPage(grid.getPageNum(), grid.getPageSize())
 				.doSelectPageInfo(() -> this.operateMapper.listOperateByPage());
+	}
+
+	@Override
+	public List<ShiroPermission> listShiroPermissions(Integer roleId) {
+		return this.operateMapper.listShiroPermissionByRoleId(roleId);
 	}
 
 }

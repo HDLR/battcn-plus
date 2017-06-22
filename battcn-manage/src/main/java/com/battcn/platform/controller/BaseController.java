@@ -14,6 +14,7 @@ public class BaseController {
 	static final String PATH_REDIRECT_LOGOUT = "redirect:/login";
 	static final String PATH_MAIN = "main";
 	static final String PATH_LOGIN = "login";
+	static final String DENIED = "denied";
 	
 	@Autowired
 	public HttpServletRequest request;

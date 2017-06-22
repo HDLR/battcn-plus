@@ -25,5 +25,10 @@ public class ManagerServiceImpl extends BaseServiceImpl<Manager> implements Mana
 				.doSelectPageInfo(() -> this.managerMapper.listManagerByName(name,account));
 	}
 
+	@Override
+	public ManagerDto selectManagerByAccount(String account) {
+		return this.managerMapper.selectManagerByAccount(account);
+	}
+
 
 }

@@ -18,7 +18,7 @@ import com.battcn.platform.service.RoleOperateService;
 import springfox.documentation.annotations.ApiIgnore;
 
 @Controller
-@RequestMapping("/role/operate/")
+@RequestMapping("/sys/role/operate/")
 @ApiIgnore
 public class RoleOperateController extends BaseController {
 
@@ -27,7 +27,6 @@ public class RoleOperateController extends BaseController {
 	@Autowired
 	RoleOperateService roleOperateService;
 
-	@ApiIgnore
 	@GetMapping("{roleId}")
 	@ResponseBody
 	public ApiResult<List<RoleOperate>> listOperate(@PathVariable Integer roleId) {

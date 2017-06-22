@@ -22,10 +22,11 @@ import com.github.pagehelper.PageInfo;
 import com.google.common.collect.Lists;
 
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import springfox.documentation.annotations.ApiIgnore;
 
 @Controller
-@RequestMapping("/manager")
+@RequestMapping("/sys/manager")
 @Api(value = "用户管理")
 public class ManagerController extends BaseController {
 	
@@ -51,12 +52,14 @@ public class ManagerController extends BaseController {
 		return "sys/manager/edit";
 	}
 
+	@ApiOperation(value = "带条件分页查询")
 	@GetMapping(value = "/query")
 	@ResponseBody
 	public PageInfo<ManagerDto> query(DataGrid grid, String name, String account) {
 		return this.managerService.listManagerByName(grid, name, account);
 	}
 
+	@ApiOperation(value = "添加/修改用户信息")
 	@BattcnLog(module = "用户管理", methods = "保存用户", description = "添加/修改用户信息")
 	@PostMapping(value = "/save")
 	@ResponseBody
@@ -67,6 +70,7 @@ public class ManagerController extends BaseController {
 		return ApiResult.getResponse(this.managerService.insertSelective(dto));
 	}
 
+	@ApiOperation(value = "删除用户信息")
 	@BattcnLog(module = "用户管理", methods = "移除用户", description = "删除用户信息")
 	@PostMapping(value = "/remove")
 	@ResponseBody

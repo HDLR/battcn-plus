@@ -22,21 +22,20 @@ import springfox.documentation.annotations.ApiIgnore;
 
 
 @Controller
-@RequestMapping("/menu")
+@RequestMapping("/sys/menu")
 @Api(value = "菜单管理")
+@ApiIgnore
 public class MenuController extends BaseController {
 	
 	@Autowired
 	private MenuService menuService;
 	
-	@ApiIgnore
 	@GetMapping("/list")
 	public String list(DataGrid grid) {
 		request.setAttribute("page", this.menuService.listMenuForDataGrid(grid));
 		return "sys/menu/list";
 	}
 
-	@ApiIgnore
 	@GetMapping(value = "/edit")
 	public String edit(Integer id) {
 		if (id != null) {

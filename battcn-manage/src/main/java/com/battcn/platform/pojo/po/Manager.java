@@ -361,4 +361,10 @@ public class Manager extends RecordEntity {
     public void setGmtModified(Date gmtModified) {
         this.gmtModified = gmtModified;
     }
+    public Manager(){}
+	public Manager(String name) {
+		super();
+		this.name = name;
+	}
+    
 }
