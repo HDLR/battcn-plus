@@ -137,32 +137,32 @@ CREATE TABLE `t_sys_operate` (
 -- Records of t_sys_operate
 -- ----------------------------
 INSERT INTO `t_sys_operate` VALUES ('1', '1', 'list', '查看', 'list', null, '1', '0', '2017-06-20 18:52:32', '2017-06-20 19:09:41');
-INSERT INTO `t_sys_operate` VALUES ('2', '2', 'edit', '编辑', 'edit', null, '3', '0', '2017-06-16 09:01:08', '2017-06-20 19:09:41');
+INSERT INTO `t_sys_operate` VALUES ('2', '2', 'edit', '编辑', 'edit', null, '3', '1', '2017-06-16 09:01:08', '2017-06-20 19:09:41');
 INSERT INTO `t_sys_operate` VALUES ('3', '2', 'list', '查看', 'list', null, '1', '0', '2017-06-16 09:01:08', '2017-06-20 19:09:41');
-INSERT INTO `t_sys_operate` VALUES ('4', '2', 'remove', '删除', 'remove', null, '4', '0', '2017-06-16 09:01:08', '2017-06-20 19:09:41');
+INSERT INTO `t_sys_operate` VALUES ('4', '2', 'remove', '删除', 'remove', null, '4', '1', '2017-06-16 09:01:08', '2017-06-20 19:09:41');
 INSERT INTO `t_sys_operate` VALUES ('5', '2', 'save', '保存', 'save', null, '5', '0', '2017-06-16 09:01:08', '2017-06-20 19:09:41');
-INSERT INTO `t_sys_operate` VALUES ('6', '2', 'add', '新增', 'plus', null, '2', '0', '2017-06-16 09:01:08', '2017-06-20 19:09:41');
-INSERT INTO `t_sys_operate` VALUES ('7', '3', 'edit', '编辑', 'edit', null, '3', '0', '2017-06-16 09:01:08', '2017-06-20 19:09:41');
+INSERT INTO `t_sys_operate` VALUES ('6', '2', 'add', '新增', 'plus', null, '2', '1', '2017-06-16 09:01:08', '2017-06-20 19:09:41');
+INSERT INTO `t_sys_operate` VALUES ('7', '3', 'edit', '编辑', 'edit', null, '3', '1', '2017-06-16 09:01:08', '2017-06-20 19:09:41');
 INSERT INTO `t_sys_operate` VALUES ('8', '3', 'list', '查看', 'list', null, '1', '0', '2017-06-16 09:01:08', '2017-06-20 19:09:41');
-INSERT INTO `t_sys_operate` VALUES ('9', '3', 'remove', '删除', 'remove', null, '4', '0', '2017-06-16 09:01:08', '2017-06-20 19:09:41');
+INSERT INTO `t_sys_operate` VALUES ('9', '3', 'remove', '删除', 'remove', null, '4', '1', '2017-06-16 09:01:08', '2017-06-20 19:09:41');
 INSERT INTO `t_sys_operate` VALUES ('10', '3', 'save', '保存', 'save', null, '5', '0', '2017-06-16 09:01:08', '2017-06-20 19:09:41');
-INSERT INTO `t_sys_operate` VALUES ('11', '3', 'add', '新增', 'plus', null, '2', '0', '2017-06-16 09:01:08', '2017-06-21 10:15:01');
-INSERT INTO `t_sys_operate` VALUES ('12', '4', 'edit', '编辑', 'edit', null, '3', '0', '2017-06-16 09:01:08', '2017-06-20 19:09:41');
+INSERT INTO `t_sys_operate` VALUES ('11', '3', 'add', '新增', 'plus', null, '2', '1', '2017-06-16 09:01:08', '2017-06-21 10:15:01');
+INSERT INTO `t_sys_operate` VALUES ('12', '4', 'edit', '编辑', 'edit', null, '3', '1', '2017-06-16 09:01:08', '2017-06-20 19:09:41');
 INSERT INTO `t_sys_operate` VALUES ('13', '4', 'list', '查看', 'list', null, '1', '0', '2017-06-16 09:01:08', '2017-06-20 19:09:41');
-INSERT INTO `t_sys_operate` VALUES ('14', '4', 'remove', '删除', 'remove', null, '4', '0', '2017-06-16 09:01:08', '2017-06-20 19:09:41');
+INSERT INTO `t_sys_operate` VALUES ('14', '4', 'remove', '删除', 'remove', null, '4', '1', '2017-06-16 09:01:08', '2017-06-20 19:09:41');
 INSERT INTO `t_sys_operate` VALUES ('15', '4', 'save', '保存', 'save', null, '5', '0', '2017-06-16 09:01:08', '2017-06-20 19:09:41');
-INSERT INTO `t_sys_operate` VALUES ('16', '4', 'add', '新增', 'plus', null, '2', '0', '2017-06-16 09:01:08', '2017-06-20 19:09:41');
-INSERT INTO `t_sys_operate` VALUES ('17', '5', 'edit', '编辑', 'edit', null, '3', '0', '2017-06-16 09:01:08', '2017-06-20 19:09:41');
+INSERT INTO `t_sys_operate` VALUES ('16', '4', 'add', '新增', 'plus', null, '2', '1', '2017-06-16 09:01:08', '2017-06-20 19:09:41');
+INSERT INTO `t_sys_operate` VALUES ('17', '5', 'edit', '编辑', 'edit', null, '3', '1', '2017-06-16 09:01:08', '2017-06-20 19:09:41');
 INSERT INTO `t_sys_operate` VALUES ('18', '5', 'list', '查看', 'list', null, '1', '0', '2017-06-16 09:01:08', '2017-06-20 19:09:41');
-INSERT INTO `t_sys_operate` VALUES ('19', '5', 'remove', '删除', 'remove', null, '4', '0', '2017-06-16 09:01:08', '2017-06-20 19:09:41');
+INSERT INTO `t_sys_operate` VALUES ('19', '5', 'remove', '删除', 'remove', null, '4', '1', '2017-06-16 09:01:08', '2017-06-20 19:09:41');
 INSERT INTO `t_sys_operate` VALUES ('20', '5', 'save', '保存', 'save', null, '5', '0', '2017-06-16 09:01:08', '2017-06-20 19:09:41');
-INSERT INTO `t_sys_operate` VALUES ('21', '5', 'add', '新增', 'plus', null, '2', '0', '2017-06-16 09:01:08', '2017-06-20 19:09:41');
+INSERT INTO `t_sys_operate` VALUES ('21', '5', 'add', '新增', 'plus', null, '2', '1', '2017-06-16 09:01:08', '2017-06-20 19:09:41');
 INSERT INTO `t_sys_operate` VALUES ('22', '6', 'list', '查看', 'list', null, '1', '0', '2017-06-16 09:01:08', '2017-06-21 09:29:01');
-INSERT INTO `t_sys_operate` VALUES ('23', '7', 'edit', '编辑', 'edit', null, '2', '0', '2017-06-16 09:01:08', '2017-06-21 09:29:09');
+INSERT INTO `t_sys_operate` VALUES ('23', '7', 'edit', '编辑', 'edit', null, '2', '1', '2017-06-16 09:01:08', '2017-06-21 09:29:09');
 INSERT INTO `t_sys_operate` VALUES ('24', '7', 'list', '查看', 'list', null, '2', '0', '2017-06-16 09:01:08', '2017-06-21 09:29:10');
-INSERT INTO `t_sys_operate` VALUES ('25', '7', 'remove', '删除', 'remove', null, '1', '0', '2017-06-16 09:01:08', '2017-06-21 09:29:12');
+INSERT INTO `t_sys_operate` VALUES ('25', '7', 'remove', '删除', 'remove', null, '1', '1', '2017-06-16 09:01:08', '2017-06-21 09:29:12');
 INSERT INTO `t_sys_operate` VALUES ('26', '7', 'save', '保存', 'save', null, '3', '0', '2017-06-16 09:01:08', '2017-06-21 09:29:13');
-INSERT INTO `t_sys_operate` VALUES ('27', '4', 'permissions', '分配权限', 'permissions', null, '1', '0', '2017-06-20 13:38:21', '2017-06-21 09:29:14');
+INSERT INTO `t_sys_operate` VALUES ('27', '4', 'permissions', '分配权限', 'permissions', null, '1', '1', '2017-06-20 13:38:21', '2017-06-21 09:29:14');
 INSERT INTO `t_sys_operate` VALUES ('28', '8', 'list', '查看', 'list', null, '1', '0', '2017-06-16 09:01:08', '2017-06-21 10:09:23');
 
 -- ----------------------------
@@ -233,15 +233,12 @@ INSERT INTO `t_sys_role_operate` VALUES ('1', '28', '2017-06-16 09:01:40', '2017
 INSERT INTO `t_sys_role_operate` VALUES ('1', '29', '2017-06-16 09:01:40', '2017-06-20 20:18:03');
 INSERT INTO `t_sys_role_operate` VALUES ('1', '30', '2017-06-16 09:01:40', '2017-06-20 20:18:03');
 INSERT INTO `t_sys_role_operate` VALUES ('1', '31', '2017-06-20 20:17:54', '2017-06-20 20:18:11');
-INSERT INTO `t_sys_role_operate` VALUES ('2', '1', '2017-06-21 10:10:04', '2017-06-21 10:10:04');
-INSERT INTO `t_sys_role_operate` VALUES ('2', '23', '2017-06-21 10:10:04', '2017-06-21 10:10:04');
-INSERT INTO `t_sys_role_operate` VALUES ('2', '24', '2017-06-21 10:10:04', '2017-06-21 10:10:04');
-INSERT INTO `t_sys_role_operate` VALUES ('2', '25', '2017-06-21 10:10:04', '2017-06-21 10:10:04');
-INSERT INTO `t_sys_role_operate` VALUES ('2', '26', '2017-06-21 10:10:04', '2017-06-21 10:10:04');
-INSERT INTO `t_sys_role_operate` VALUES ('2', '28', '2017-06-21 10:10:04', '2017-06-21 10:10:04');
-INSERT INTO `t_sys_role_operate` VALUES ('2', '29', '2017-06-21 10:10:04', '2017-06-21 10:10:04');
-INSERT INTO `t_sys_role_operate` VALUES ('3', '28', '2017-06-21 10:10:34', '2017-06-21 10:10:34');
-INSERT INTO `t_sys_role_operate` VALUES ('3', '29', '2017-06-21 10:10:34', '2017-06-21 10:10:34');
+INSERT INTO `t_sys_role_operate` VALUES ('2', '1', '2017-06-16 09:01:39', '2017-06-16 09:01:39');
+INSERT INTO `t_sys_role_operate` VALUES ('2', '2', '2017-06-16 09:01:39', '2017-06-16 09:01:39');
+INSERT INTO `t_sys_role_operate` VALUES ('2', '3', '2017-06-16 09:01:39', '2017-06-16 09:01:39');
+INSERT INTO `t_sys_role_operate` VALUES ('2', '4', '2017-06-16 09:01:39', '2017-06-16 09:01:39');
+INSERT INTO `t_sys_role_operate` VALUES ('2', '5', '2017-06-16 09:01:39', '2017-06-16 09:01:39');
+
 
 -- ----------------------------
 -- Procedure structure for refreshTreeNodes
