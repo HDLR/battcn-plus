@@ -76,7 +76,7 @@ CREATE TABLE `t_sys_manager` (
 -- Records of t_sys_manager
 -- ----------------------------
 INSERT INTO `t_sys_manager` VALUES ('1', 'admin', '123456', '1', '秋殇', '9c6c9e22ae8c773c8f07a75b28563152', '', null, null, null, null, null, null, '2017-06-16 08:59:01', '2017-06-16 08:59:01');
-INSERT INTO `t_sys_manager` VALUES ('2', 'battcn', 'battcn', '2', '11333', null, '\0', null, null, null, null, null, null, '2017-06-19 09:20:14', '2017-06-21 13:49:37');
+INSERT INTO `t_sys_manager` VALUES ('2', 'battcn', 'battcn', '2', '11333', null, '', null, null, null, null, null, null, '2017-06-19 09:20:14', '2017-06-21 13:49:37');
 
 -- ----------------------------
 -- Table structure for t_sys_menu
@@ -256,29 +256,28 @@ SET LEVEL = 0 ; UPDATE t_sys_menu a
 INNER JOIN (
 	SELECT
 		id,
-		LEVEL,
+		n_level,
 		concat(',', ID, ',') scort
 	FROM
 		t_sys_menu
 	WHERE
-		pid IS NULL
+		pater_id IS NULL
 ) b ON a.id = b.id
-SET a.nlevel = b. LEVEL,
+SET a.n_level = b.n_level,
  a.scort = b.scort ;
 WHILE FOUND_ROWS() > 0 DO
-
 SET LEVEL = LEVEL + 1 ; UPDATE t_sys_menu a
 INNER JOIN (
 	SELECT
 		ID,
-		LEVEL,
+		n_level,
 		scort
 	FROM
 		t_sys_menu
 	WHERE
 		n_level = LEVEL - 1
-) b ON a.pid = b.id
-SET a.nlevel = b. LEVEL,
+) b ON a.pater_id = b.id
+SET a.n_level = b.n_level,
  a.scort = concat(b.scort, a.ID, ',') ;
 END
 WHILE ;

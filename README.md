@@ -6,7 +6,10 @@
 	权限：采用Spring Shiro做的登陆认证与URL拦截
 	本系统秉承开源精神,欢迎大家使用与开发,遇到任何问题可以 申请QQ群：391619659 找到 解答
 	该版本为battcn.x的终极版本,只做干净的项目,剔除了battcn2.x的redis模块 以及一些plugin模块,
-	为了方便开发新增 battcn-generator , 学习该套代码需要掌握boot基本知识
+	为了方便开发新增 battcn-generator , 学习该套代码需要掌握boot基本知识 ,Maven命令：mybatis-generator:generate
+	封装swagger（参考battcn-framework-starter-swagger）只需要通过简单的配置（application.yml）即可使用自动装配
+	封装mybatis（参考battcn-framework-starter-mybatis）只需要通过简单的配置（application.yml）即可使用自动装配
+	
 
 注意事项
 ------

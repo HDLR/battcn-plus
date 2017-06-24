@@ -3,10 +3,10 @@
 	xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <div class="row  border-bottom white-bg dashboard-header animated fadeInRight">
-	<!-- <div class="col-sm-4">
+	<div class="col-sm-4">
 		<div class="ibox float-e-margins">
 			<div class="ibox-title">
-				<h5>关于Battcn</h5>
+				<h5>关于battcn-plus</h5>
 			</div>
 			<div class="ibox-content">
 				<p>battcn具有以下特点：</p>
@@ -43,7 +43,7 @@
 				</p>
 				<hr/>
 				<p>
-					如果需要赞助battcn_2.0，可直接付款到支付宝：<a href="javascript:void(0);">13002171912</a>，
+					如果需要赞助battcn-plus，可直接付款到支付宝：<a href="javascript:void(0);">13002171912</a>，
 					收款人：<a href="javascript:void(0);">唐亚峰</a>。
 				</p>
 				<div class="alert alert-warning">
@@ -58,15 +58,15 @@
 			</div>
 			<div class="ibox-content">
 				<p>
-					如果喜欢battcn，希望获取到源码，请前往我们的官网  <a href="http://www.battcn.com" target="_blank">www.battcn.com</a>获取源码
+					如果喜欢battcn，点击  <a href="https://git.oschina.net/battcn/battcn-plus" target="_blank"> &nbsp;&nbsp;获取源码 &nbsp;&nbsp;</a>
 					请时常关注我们，因为我们将不定期更新功能修复BUG，您也可以提出您的宝贵 意见或者发现的BUG，
 					作者将在第一时间处理并且通知到您	，battcn的成长离不开大家的 支持。			
 				</p>
 				<ol>
-					<li>访问 <a href="http://www.battcn.com" target="_blank">www.battcn.com</a></li>
-					<li>点击发现</li>
-					<li>获取源码 /在线演示</li>
-					<li style="color: red">获取源码后请先阅读源码中的README 遇到任何问题都可以询问作者</li>
+					<li>访问 <a href="http://www.battcn.com" target="_blank">https://git.oschina.net/battcn/battcn-plus</a></li>
+					<li>点击克隆/下载</li>
+					<li>下载Zip文件或者Fork到自己的GIT仓库或者SVN/GIT等方式下载到本队</li>
+					<li style="color: red">获取源码后请先阅读源码中的README 遇到任何问题都可以询问作者（空闲时间都会解答）</li>
 					<li style="color: red">技术支持：1837307557</li>
 					<li style="color: red">QQ交流群：391619659</li>
 				</ol>
@@ -84,6 +84,27 @@
 				<div class="ibox-content no-padding">
 					<div class="panel-body">
 						<div class="panel-group" id="version">
+						
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title">
+										<a data-toggle="collapse" data-parent="#version" href="#v22">v2.5.1(plus)</a>
+										<code class="my-pull-right">2017.06.24</code>
+									</h4>
+								</div>
+								<div id="v22" class="panel-collapse collapse in">
+									<div class="panel-body">
+										<ol>
+											<li>重构battcn2.x的代码风格,优化SQL以及简化代码编写力度</li>
+											<li>全局统一的异常处理</li>
+											<li>采用SpringBoot和Thymeleaf引擎模板</li>
+											<li>颗粒度的Shiro权限控制,AJAX封装</li>
+											<li>battcn-plus只有权限相关,不负责添加业务,剔除Redis（方便学习和使用）</li>
+										</ol>
+									</div>
+								</div>
+							</div>
+						
 							<div class="panel panel-default">
 								<div class="panel-heading">
 									<h4 class="panel-title">
@@ -91,7 +112,7 @@
 										<code class="my-pull-right">2016.10.18</code>
 									</h4>
 								</div>
-								<div id="v21" class="panel-collapse collapse in">
+								<div id="v21" class="panel-collapse collapse">
 									<div class="panel-body">
 										<ol>
 											<li>新增Redis的操作</li>
@@ -264,6 +285,6 @@
 				</ul>
 			</div>
 		</div>
-	</div> -->
+	</div>
 </div>
 </html>

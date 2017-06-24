@@ -4,6 +4,7 @@ import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.ExcessiveAttemptsException;
 import org.apache.shiro.authc.LockedAccountException;
+import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
@@ -11,6 +12,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 import com.battcn.platform.pojo.po.Manager;
 
 import io.swagger.annotations.ApiOperation;
@@ -35,7 +38,7 @@ public class LoginController extends BaseController {
 
 	@ApiOperation(value = "根据账号密码登陆")
 	@PostMapping(value = "/login")
-	public String login(Manager manager) {
+	public String login(Manager manager,RedirectAttributes model) {
 		// 想要得到 SecurityUtils.getSubject() 的对象．．访问地址必须跟shiro的拦截地址内．不然后会报空指针
 		Subject sub = SecurityUtils.getSubject();
 		// 用户输入的账号和密码,,存到UsernamePasswordToken对象中..然后由shiro内部认证对比,
@@ -44,21 +47,28 @@ public class LoginController extends BaseController {
 		UsernamePasswordToken token = new UsernamePasswordToken(manager.getAccount(), manager.getPassword());
 		try {
 			sub.login(token);
+		} catch (UnknownAccountException e) {
+			logger.error("对用户[{}]进行登录验证,验证未通过,用户不存在", manager.getAccount());
+			model.addFlashAttribute("msg", "验证未通过,用户不存在");
+			token.clear();
+			return "redirect:/login";
 		} catch (LockedAccountException lae) {
 			logger.error("对用户[{}]进行登录验证,验证未通过,账户已锁定", manager.getAccount());
-			request.setAttribute("msg", "验证未通过,账户已锁定");
+			model.addFlashAttribute("msg", "验证未通过,账户已锁定");
 			token.clear();
 			return "redirect:/login";
 		} catch (ExcessiveAttemptsException e) {
 			logger.error("对用户[{}]进行登录验证,验证未通过,错误次数过多", manager.getAccount());
-			request.setAttribute("msg", "验证未通过,错误次数过多");
+			model.addFlashAttribute("msg", "验证未通过,错误次数过多");
 			token.clear();
 			return "redirect:/login";
 		} catch (AuthenticationException e) {
 			logger.error("对用户[{}]进行登录验证,验证未通过,堆栈轨迹如下", manager.getAccount(), e);
-			request.setAttribute("msg", "验证未通过,请联系管理员");
+			model.addFlashAttribute("msg", "验证未通过,請检查用户名和密码信息");
 			token.clear();
 			return "redirect:/login";
+		}finally {
+			 
 		}
 		return "redirect:/index";
 	}
