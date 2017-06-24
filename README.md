@@ -5,21 +5,35 @@
 	通用Mapper：Mybatis单表操作基于注解调用API,方便我们开发,提高开发效率
 	权限：采用Spring Shiro做的登陆认证与URL拦截
 	本系统秉承开源精神,欢迎大家使用与开发,遇到任何问题可以 申请QQ群：391619659 找到 解答
-	该版本为battcn.x的终极版本,只做干净的项目,剔除了battcn2.x的redis模块 以及一些plugin模块,
-	为了方便开发新增 battcn-generator , 学习该套代码需要掌握boot基本知识 ,Maven命令：mybatis-generator:generate
+	该版本为battcn.x的终极版本,只做干净的项目,剔除了battcn2.x的redis模块 以及一些plugin模块,学习该套代码需要掌握boot基本知识 
+	简化开发： battcn-generator 提供mybatis-generate代码,生成DAO,POJO(含注释),XML(无具体内容,减少代码),Maven命令：mybatis-generator:generate
 	封装swagger（参考battcn-framework-starter-swagger）只需要通过简单的配置（application.yml）即可使用自动装配
 	封装mybatis（参考battcn-framework-starter-mybatis）只需要通过简单的配置（application.yml）即可使用自动装配
+	项目启动成功访问：
+		http://localhost:8082		即可跳转到login.html
+		http://localhost:8082/swagger-ui.html		即可跳转到swagger-ui.html,方便接口调试（需要先登录）
+		
 	
+[下载静态资源：http://oe8uway3x.bkt.clouddn.com/static.zip](http://oe8uway3x.bkt.clouddn.com/static.zip "下载静态资源：http://oe8uway3x.bkt.clouddn.com/static.zip")
+
+[群官网：http://www.battcn.com](http://www.battcn.com "群官网：http://www.battcn.com")
+
+[演示地址：http://demo.battcn.com](http://demo.battcn.com "演示地址：http://demo.battcn.com")	
+
 
 注意事项
 ------
         A)运行：Application.java
+        B)演示地址：
+        	http://demo.battcn.com
+        	http://demo.battcn.com/swagger-ui.html
 一.服务人群
 ------
 
 	A) 初创型公司技术团队
 	B) 外包公司技术团队
 	C) 独行侠
+	D) 学生
 
 二.项目事项
 ------
@@ -29,27 +43,7 @@
 		留出时间着重自己的业务开发就是本项目的最终目标。
 	C) 项目部署：里面写了一个小的存储过程,所以 需要手动在 数据库执行  battcn2.sql 里面已经注释掉了 ,因为有一个"初始化系统"的功能
 
-[下载静态资源：http://oe8uway3x.bkt.clouddn.com/static.zip](http://oe8uway3x.bkt.clouddn.com/static.zip "下载静态资源：http://oe8uway3x.bkt.clouddn.com/static.zip")
-
-[群官网：http://www.battcn.com](http://www.battcn.com "群官网：http://www.battcn.com")
-
-[演示地址：http://www.battcn.com/battcn/](http://www.battcn.com/battcn/ "演示地址：http://www.battcn.com/battcn/")
-
 三.开发流程
-------
-
-	1.具体不清楚可以申请加群：391619659
-	2.本系统为开源系统可以随意修改
-	3.欢迎大家使用,本系统不会记录任何使用者的信息,可以放心使用,有Bug可以提交作者(QQ:1837307557)
-	4.如果喜欢可以赞助作者,您的支持就是作者最大的动力
-
-![](http://oe8uway3x.bkt.clouddn.com/6.png)
-![](http://oe8uway3x.bkt.clouddn.com/7.png)
-![](http://oe8uway3x.bkt.clouddn.com/2.png)
-![](http://oe8uway3x.bkt.clouddn.com/4.png)
-
-
-四.开发用例
 ------
 
 	定义实体类Entity(如：UserEntity)
@@ -57,6 +51,10 @@
 	定义 Service 接口(如：UserService)（根据Java规范所以接口化编程：可省）
 	实现 Service (如：UserServiceImpl)
 	创建 Controller 控制器(如：UserController)
+	
+	1.具体不清楚可以申请加群：391619659
+	2.本系统为开源系统可以随意修改
+	3.欢迎大家使用,本系统不会记录任何使用者的信息,可以放心使用,有Bug可以提交作者(QQ:1837307557)
+	4.如果喜欢可以赞助作者,您的支持就是作者最大的动力
 
-				
 				
