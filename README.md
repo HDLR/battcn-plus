@@ -12,15 +12,16 @@
 	项目启动成功访问：
 		http://localhost:8082		即可跳转到login.html
 		http://localhost:8082/swagger-ui.html		即可跳转到swagger-ui.html,方便接口调试（需要先登录）
+		
 	
 	
+[下载静态资源：http://oe8uway3x.bkt.clouddn.com/static.zip](http://oe8uway3x.bkt.clouddn.com/static.zip "下载静态资源：http://oe8uway3x.bkt.clouddn.com/static.zip")
 
-注意事项
-------
-        A)运行：Application.java
-        B)演示地址：
-        	http://demo.battcn.com
-        	http://demo.battcn.com/swagger-ui.html
+[群官网：http://www.battcn.com](http://www.battcn.com "群官网：http://www.battcn.com")
+
+[演示地址：http://demo.battcn.com](http://demo.battcn.com "演示地址：http://demo.battcn.com")	
+
+
 一.服务人群
 ------
 
@@ -36,12 +37,6 @@
 		用户通过本项目可以快速的搭建出自己的开发平台，并且可以让用户减轻考虑基础功能的时间，
 		留出时间着重自己的业务开发就是本项目的最终目标。
 	C) 项目部署：里面写了一个小的存储过程,所以 需要手动在 数据库执行  battcn2.sql 里面已经注释掉了 ,因为有一个"初始化系统"的功能
-
-[下载静态资源：http://oe8uway3x.bkt.clouddn.com/static.zip](http://oe8uway3x.bkt.clouddn.com/static.zip "下载静态资源：http://oe8uway3x.bkt.clouddn.com/static.zip")
-
-[群官网：http://www.battcn.com](http://www.battcn.com "群官网：http://www.battcn.com")
-
-[演示地址：http://www.battcn.com/battcn/](http://www.battcn.com/battcn/ "演示地址：http://www.battcn.com/battcn/")
 
 三.开发流程
 ------
