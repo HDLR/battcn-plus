@@ -8,7 +8,7 @@
   $(function(){
 	  $.ajax({
 			type : "GET",
-			url :  '/role/operate/'+$("#menu[[${OP.menuId}]]Form").find("#roleId").val(),
+			url :  'sys/role/operate/'+$("#menu[[${OP.menuId}]]Form").find("#roleId").val(),
 			dataType : 'json',
 			success : function(result) {
 				var operate = result.data;
@@ -20,7 +20,7 @@
 	  battcn.admin.menu[[${OP.menuId}]].permissions.save = function(obj) {
 		var $form = $("#menu[[${OP.menuId}]]Form");  		
   		if($form.valid()){
-  			battcn.ajaxJson({url:"/role/operate/permissions",data:$form.serializeArray()},function(){
+  			battcn.ajaxJson({url:"sys/role/operate/permissions",data:$form.serializeArray()},function(){
   				battcn.closeWindow();
 				$('#admin_menu[[${OP.menuId}]]_datagrid').bootstrapTable('refresh');
     		});

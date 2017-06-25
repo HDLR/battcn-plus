@@ -1,4 +1,4 @@
-package com.battcn.pojo;
+package com.battcn.platform.pojo;
 
 import java.io.Serializable;
 import java.util.Date;

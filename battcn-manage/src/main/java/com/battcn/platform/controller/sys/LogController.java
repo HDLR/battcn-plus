@@ -29,7 +29,6 @@ public class LogController {
 	@BattcnLog(description = "进入日志查询的页面", module = "日志模块", methods = "日志list")
 	@ApiOperation(value = "跳转日志页面", hidden = true)
 	public String list() throws BattcnException {
-		
 		return "sys/log/list";
 	}
 
@@ -39,7 +38,6 @@ public class LogController {
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "请求成功"), @ApiResponse(code = 404, message = "地址错误"),
 			@ApiResponse(code = 500, message = "系统错误,请联系管理人员") })
 	public PageInfo<Log> query(DataGrid grid) {
-		
 		return this.logService.listForDataGrid(grid);
 	}
 

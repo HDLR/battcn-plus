@@ -24,11 +24,11 @@
 		<project.resources.path>${project.basedir}/src/main/resources</project.resources.path>
 		<!-- Java接口和实体类 -->
 		<targetJavaProject>${project.basedir}/src/main/java</targetJavaProject>
-		<targetMapperPackage>com.battcn.mapper</targetMapperPackage>
-		<targetModelPackage>com.battcn.pojo.po</targetModelPackage>
+		<targetMapperPackage>com.battcn.platform.mapper</targetMapperPackage>
+		<targetModelPackage>com.battcn.platform.pojo.po</targetModelPackage>
 		<!-- XML生成路径 -->
 		<targetResourcesProject>${targetJavaProject}</targetResourcesProject>
-		<targetXMLPackage>com.battcn.mapper</targetXMLPackage>
+		<targetXMLPackage>com.battcn.platform.mapper</targetXMLPackage>
 		<!-- 依赖版本 -->
 		<mapper.version>${tk-mybatis-mapper.version}</mapper.version>
 	</properties>
