@@ -3,6 +3,7 @@ package com.battcn.platform.service.impl;
 import static java.util.stream.Collectors.toList;
 
 import java.util.List;
+import java.util.Objects;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -33,7 +34,7 @@ public class MenuServiceImpl extends BaseServiceImpl<Menu> implements MenuServic
 	MenuMapper menuMapper;
 
 	private List<TreeNode> createTree(List<Menu> menus, Integer pid) {
-		return menus.stream().filter(m -> m.getPaterId() != null && pid == m.getPaterId())
+		return menus.stream().filter(m -> m.getPaterId() != null && Objects.equals(pid, m.getPaterId()))
 				.map(m -> new TreeNode(m.getId(), m.getName(), m.getIcon())).collect(toList());
 	}
 
@@ -56,11 +57,11 @@ public class MenuServiceImpl extends BaseServiceImpl<Menu> implements MenuServic
 		List<PermissionDto> trees = list.stream().filter(m1 -> m1.getPaterId() == null).collect(toList());// 根目录
 		trees.forEach(m2 -> {
 			List<PermissionDto> permissions = list.stream()
-					.filter(p1 -> StringUtils.equals(p1.getOp(), "list") && p1.getPaterId() == m2.getMenuId())
+					.filter(p1 -> StringUtils.equals(p1.getOp(), "list") && Objects.equals(p1.getPaterId(), m2.getMenuId()))
 					.collect(toList());
 			permissions.forEach(m3 -> {
 				m3.setChildren(list.stream()
-						.filter(b1 -> !StringUtils.equals(b1.getOp(), "list") && b1.getMenuId() == m3.getMenuId())
+						.filter(b1 -> !StringUtils.equals(b1.getOp(), "list") && Objects.equals(b1.getMenuId(), m3.getMenuId()))
 						.collect(toList()));
 			});
 			m2.setChildren(permissions);

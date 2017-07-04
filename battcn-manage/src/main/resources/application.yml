@@ -25,9 +25,9 @@ spring:
 #  profiles: 
 #    active: dev
   datasource:
-    url: jdbc:mysql://localhost:3306/battcn-plus?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true
+    url: jdbc:mysql://192.168.18.183:3306/cloud_test?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true
     username: root
-    password: root123
+    password: xampp123%
     driver-class-name: com.mysql.jdbc.Driver
     hikari:
       max-lifetime: 1765000 #一个连接的生命时长（毫秒），超时而且没被使用则被释放（retired），缺省:30分钟，建议设置比数据库超时时长少30秒以上  
