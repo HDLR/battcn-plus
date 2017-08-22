@@ -21,6 +21,8 @@
 
 [演示地址：http://demo.battcn.com](http://demo.battcn.com "演示地址：http://demo.battcn.com")	
 
+完成所有功能，包括权限
+
 
 一.服务人群
 ------
