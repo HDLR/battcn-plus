@@ -12,6 +12,7 @@
 	<name>battcn2-plus</name>
 	<description>采用JDK8、SpringBoot</description>
 	<packaging>pom</packaging>
+
 	
 	<!--配置maven阿里云仓库开始,不用去改maven的setting-->
 	<repositories>
