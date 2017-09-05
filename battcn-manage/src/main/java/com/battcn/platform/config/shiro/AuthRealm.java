@@ -41,7 +41,7 @@ public class AuthRealm extends AuthorizingRealm {
 	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token)
 			throws AuthenticationException {
 		String accountName = (String) token.getPrincipal();
-		ManagerDto user = Optional.ofNullable(managerService.selectManagerByAccount(accountName)).orElseThrow(()->new UnknownAccountException());
+		ManagerDto user = Optional.ofNullable(managerService.selectManagerByAccount(accountName)).orElseThrow(UnknownAccountException::new);
 		if(!user.getLocked())throw new LockedAccountException();
 		// 从数据库查询出来的账号名和密码,与用户输入的账号和密码对比
 		// 当用户执行登录时,在方法处理上要实现user.login(token);

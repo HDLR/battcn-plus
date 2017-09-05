@@ -26,72 +26,69 @@ import com.google.common.collect.Lists;
 @Service
 public class MenuServiceImpl extends BaseServiceImpl<Menu> implements MenuService {
 
-	@Autowired
-	AuthMapper authMapper;
-	@Autowired
-	OperateMapper operateMapper;
-	@Autowired
-	MenuMapper menuMapper;
+    @Autowired
+    AuthMapper authMapper;
+    @Autowired
+    OperateMapper operateMapper;
+    @Autowired
+    MenuMapper menuMapper;
 
-	private List<TreeNode> createTree(List<Menu> menus, Integer pid) {
-		return menus.stream().filter(m -> m.getPaterId() != null && Objects.equals(pid, m.getPaterId()))
-				.map(m -> new TreeNode(m.getId(), m.getName(), m.getIcon())).collect(toList());
-	}
+    private List<TreeNode> createTree(List<Menu> menus, Integer pid) {
+        return menus.stream().filter(m -> m.getPaterId() != null && Objects.equals(pid, m.getPaterId()))
+                .map(m -> new TreeNode(m.getId(), m.getName(), m.getIcon())).collect(toList());
+    }
 
-	@Override
-	public List<TreeNode> listTree(Integer roleId) {
-		List<TreeNode> trees = Lists.newArrayList();
-		List<Menu> menus = this.authMapper.listMenuByRoleId(roleId);
-		menus.stream().filter(m -> m.getPaterId() == null).forEach(m -> {
-			List<TreeNode> tree = createTree(menus, m.getId());
-			if (CollectionUtils.isNotEmpty(tree)) {
-				trees.add(new TreeNode(m.getId(), m.getName(), m.getIcon(), tree));
-			}
-		});
-		return trees;
-	}
+    @Override
+    public List<TreeNode> listTree(Integer roleId) {
+        List<TreeNode> trees = Lists.newArrayList();
+        List<Menu> menus = this.authMapper.listMenuByRoleId(roleId);
+        menus.stream().filter(m -> m.getPaterId() == null).forEach(m -> {
+            List<TreeNode> tree = createTree(menus, m.getId());
+            if (CollectionUtils.isNotEmpty(tree)) {
+                trees.add(new TreeNode(m.getId(), m.getName(), m.getIcon(), tree));
+            }
+        });
+        return trees;
+    }
 
-	@Override
-	public List<PermissionDto> listPermissions() {
-		List<PermissionDto> list = operateMapper.listPermissions();
-		List<PermissionDto> trees = list.stream().filter(m1 -> m1.getPaterId() == null).collect(toList());// 根目录
-		trees.forEach(m2 -> {
-			List<PermissionDto> permissions = list.stream()
-					.filter(p1 -> StringUtils.equals(p1.getOp(), "list") && Objects.equals(p1.getPaterId(), m2.getMenuId()))
-					.collect(toList());
-			permissions.forEach(m3 -> {
-				m3.setChildren(list.stream()
-						.filter(b1 -> !StringUtils.equals(b1.getOp(), "list") && Objects.equals(b1.getMenuId(), m3.getMenuId()))
-						.collect(toList()));
-			});
-			m2.setChildren(permissions);
-		});
-		return trees;
-	}
+    @Override
+    public List<PermissionDto> listPermissions() {
+        List<PermissionDto> list = operateMapper.listPermissions();
+        List<PermissionDto> trees = list.stream().filter(m1 -> m1.getPaterId() == null).collect(toList());// 根目录
+        trees.forEach(m2 -> {
+            List<PermissionDto> permissions = list.stream()
+                    .filter(p1 -> StringUtils.equals(p1.getOp(), "list") && Objects.equals(p1.getPaterId(), m2.getMenuId()))
+                    .collect(toList());
+            permissions.forEach(m3 -> {
+                m3.setChildren(list.stream()
+                        .filter(b1 -> !StringUtils.equals(b1.getOp(), "list") && Objects.equals(b1.getMenuId(), m3.getMenuId()))
+                        .collect(toList()));
+            });
+            m2.setChildren(permissions);
+        });
+        return trees;
+    }
 
-	@Override
-	public PageInfo<Menu> listMenuForDataGrid(DataGrid grid) {
-		return PageHelper.startPage(grid.getPageNum(), grid.getPageSize())
-				.doSelectPageInfo(() -> this.menuMapper.listMenu());
-	}
+    @Override
+    public PageInfo<Menu> listMenuForDataGrid(DataGrid grid) {
+        return PageHelper.startPage(grid.getPageNum(), grid.getPageSize()).doSelectPageInfo(() -> this.menuMapper.listMenu());
+    }
 
-	@Override
-	public List<Menu> listMenu() {
-		List<Menu> menus = this.menuMapper.listMenu();
-		menus.forEach(m -> {
-			m.setName(m.getPaterId() == null ? "－－" + m.getName() : "－－－－" + m.getName());
-		});
-		return menus;
-	}
+    @Override
+    public List<Menu> listMenu() {
+        List<Menu> menus = this.menuMapper.listMenu();
+        menus.forEach(m -> m.setName(m.getPaterId() == null ? "－－" + m.getName() : "－－－－" + m.getName()));
+        return menus;
+    }
 
-	@Override
-	public void saveOrUpdate(Menu menu) {
-		if (menu != null && menu.getId() != null) {
-			super.updateSelectiveById(menu);
-		} else {
-			super.insertSelective(menu);
-		}
-		this.menuMapper.refreshTreeNodes();
-	}
+    @Override
+    public void saveOrUpdate(Menu menu) {
+        if (menu != null && menu.getId() != null) {
+            super.updateSelectiveById(menu);
+        } else {
+            super.insertSelective(menu);
+        }
+        this.menuMapper.refreshTreeNodes();
+    }
 
 }

@@ -53,21 +53,12 @@ pagehelper:
   support-methods-arguments: true   
 
 
-
 swagger:
-  enable: true
-  api-info:
-    description: battcn-plus
-    license: battcn-plus
-    license-url: http://www.battcn.com
-    terms-of-service-url: http://www.battcn.com
-    title: 鏖战八方
-    version: 2.5.1
-    contact:
-      email: 1837307557@qq.com
-      name: Levin
-      url: http://www.battcn.com
+  enabled: true
   docket:
-    base-package: com.battcn.platform.controller
-    group-name: battcn-manage  
+    全部接口:
+      base-package: com.battcn.platform.controller
+    基础信息:
+      base-package: com.battcn.platform.controller.sys
+
   

@@ -1,12 +1,12 @@
 package com.battcn.platform.controller.sys;
 
+import com.battcn.framework.common.exception.BattcnException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.battcn.framework.common.annotation.BattcnLog;
-import com.battcn.framework.common.exception.BattcnException;
 import com.battcn.framework.mybatis.page.DataGrid;
 import com.battcn.platform.pojo.po.Log;
 import com.battcn.platform.service.LogService;
@@ -16,6 +16,8 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import springfox.documentation.annotations.ApiIgnore;
+
+import static com.battcn.framework.common.exception.BattcnException.badRequest;
 
 @Controller
 @RequestMapping("/sys/log")

@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.alibaba.fastjson.JSON;
 import com.battcn.platform.controller.BaseController;
 import com.battcn.platform.pojo.message.ApiResult;
-import com.battcn.platform.pojo.message.MessageId;
 import com.battcn.platform.pojo.po.RoleOperate;
 import com.battcn.platform.service.MenuService;
 import com.battcn.platform.service.RoleOperateService;
@@ -30,7 +29,7 @@ public class RoleOperateController extends BaseController {
 	@GetMapping("{roleId}")
 	@ResponseBody
 	public ApiResult<List<RoleOperate>> listOperate(@PathVariable Integer roleId) {
-		return ApiResult.getSuccess(MessageId.GENERAL_SUCCESS, this.roleOperateService.listRoleOperateByRoleId(roleId));
+		return ApiResult.getSuccess(this.roleOperateService.listRoleOperateByRoleId(roleId));
 	}
 
 	@PostMapping("permissions")

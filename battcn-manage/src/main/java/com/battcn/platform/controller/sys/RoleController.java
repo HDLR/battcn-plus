@@ -8,17 +8,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.battcn.framework.common.annotation.BattcnLog;
-import com.battcn.framework.common.exception.BattcnException;
 import com.battcn.framework.mybatis.page.DataGrid;
 import com.battcn.platform.controller.BaseController;
 import com.battcn.platform.pojo.message.ApiResult;
-import com.battcn.platform.pojo.message.MessageId;
 import com.battcn.platform.pojo.po.Role;
 import com.battcn.platform.service.MenuService;
 import com.battcn.platform.service.RoleService;
 import com.github.pagehelper.PageInfo;
 
 import springfox.documentation.annotations.ApiIgnore;
+
+import static com.battcn.framework.common.exception.BattcnException.notFound;
 
 @Controller
 @RequestMapping("/sys/role")
@@ -46,7 +46,7 @@ public class RoleController extends BaseController {
 	@GetMapping(value = "/edit")
 	public String edit(Integer id) {
 		if (id != null) {
-			request.setAttribute("dto", this.roleService.selectById(id).orElseThrow(()->BattcnException.notFound("未找到记录")));
+			request.setAttribute("dto", this.roleService.selectById(id).orElseThrow(()-> notFound("未找到记录")));
 		}
 		return "sys/role/edit";
 	}
@@ -72,7 +72,7 @@ public class RoleController extends BaseController {
 	@ResponseBody
 	public ApiResult<String> del(Integer[] ids) {
 		this.roleService.deleteRoleAndOperate(ids);
-		return ApiResult.getSuccess(MessageId.GENERAL_SUCCESS);
+		return ApiResult.SUCCESS;
 	}
 
 }

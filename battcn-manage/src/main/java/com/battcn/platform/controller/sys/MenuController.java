@@ -8,17 +8,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.battcn.framework.common.annotation.BattcnLog;
-import com.battcn.framework.common.exception.BattcnException;
 import com.battcn.framework.mybatis.page.DataGrid;
 import com.battcn.platform.controller.BaseController;
 import com.battcn.platform.pojo.message.ApiResult;
-import com.battcn.platform.pojo.message.MessageId;
 import com.battcn.platform.pojo.po.Menu;
 import com.battcn.platform.service.MenuService;
 import com.google.common.collect.Lists;
 
 import io.swagger.annotations.Api;
 import springfox.documentation.annotations.ApiIgnore;
+
+import static com.battcn.framework.common.exception.BattcnException.notFound;
 
 
 @Controller
@@ -39,7 +39,7 @@ public class MenuController extends BaseController {
 	@GetMapping(value = "/edit")
 	public String edit(Integer id) {
 		if (id != null) {
-			request.setAttribute("dto",this.menuService.selectById(id).orElseThrow(() -> BattcnException.notFound("该数据已失效")));
+			request.setAttribute("dto",this.menuService.selectById(id).orElseThrow(() -> notFound("该数据已失效")));
 		}
 		request.setAttribute("menus",this.menuService.listMenu());
 		return "sys/menu/edit";
@@ -50,7 +50,7 @@ public class MenuController extends BaseController {
 	@ResponseBody
 	public ApiResult<String> save(Menu menu) {
 		this.menuService.saveOrUpdate(menu);
-		return ApiResult.getSuccess(MessageId.GENERAL_SUCCESS);
+		return ApiResult.SUCCESS;
 	}
 
 	@BattcnLog(module = "菜单管理", methods = "移除菜单", description = "删除菜单信息")
@@ -58,7 +58,7 @@ public class MenuController extends BaseController {
 	@ResponseBody
 	public ApiResult<String> del(Integer[] ids) {
 		Lists.newArrayList(ids).forEach(id -> this.menuService.deleteById(id));
-		return ApiResult.getSuccess(MessageId.GENERAL_SUCCESS);
+		return ApiResult.SUCCESS;
 	}
 	
 	
