@@ -12,6 +12,7 @@ public class BattcnException extends BaseException {
     private static final int FORBIDDEN = 403;
     private static final int NOT_FOUND = 404;
     private static final int RESOURCE_REPLICATION = 409;
+
     /**
      * 规范的HTTP状态响应码,如400/403/503等
      */
