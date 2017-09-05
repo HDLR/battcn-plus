@@ -9,7 +9,7 @@
 	简化开发： battcn-generator 提供mybatis-generate代码,生成DAO,POJO(含注释),XML(无具体内容,减少代码),Maven命令：mybatis-generator:generate
 	封装swagger（参考battcn-framework-starter-swagger）只需要通过简单的配置（application.yml）即可使用自动装配
 	封装mybatis（参考battcn-framework-starter-mybatis）只需要通过简单的配置（application.yml）即可使用自动装配
-	项目启动成功访问：
+	启动（battcn-managent）成功访问：
 		http://localhost:8082		即可跳转到login.html
 		http://localhost:8082/swagger-ui.html		即可跳转到swagger-ui.html,方便接口调试（需要先登录）
 		
