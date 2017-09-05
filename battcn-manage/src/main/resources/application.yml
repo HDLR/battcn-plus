@@ -25,7 +25,7 @@ spring:
 #  profiles: 
 #    active: dev
   datasource:
-    url: jdbc:mysql://localhost:3306/battcn2.0?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true
+    url: jdbc:mysql://localhost:3306/battcn-plus?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true
     username: root
     password: root
     driver-class-name: com.mysql.jdbc.Driver
