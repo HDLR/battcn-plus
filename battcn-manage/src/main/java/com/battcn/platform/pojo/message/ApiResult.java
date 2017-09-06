@@ -57,11 +57,11 @@ public class ApiResult<T> implements Serializable {
 
 
     public static <T> ApiResult<T> getSuccess(T data) {
-        return getResponse(HttpStatus.OK.value(), OPERATION_SUCCESS, null);
+        return getResponse(HttpStatus.OK.value(), OPERATION_SUCCESS, data);
     }
 
     public static <T> ApiResult<T> getSuccess(String message, T data) {
-        return getResponse(HttpStatus.OK.value(), message, null);
+        return getResponse(HttpStatus.OK.value(), message, data);
     }
 
     public static <T> ApiResult<T> getSuccess(String message) {
@@ -85,7 +85,7 @@ public class ApiResult<T> implements Serializable {
     }
 
     public static <T> ApiResult<T> getFailure(String message, T data) {
-        return getResponse(HttpStatus.BAD_REQUEST.value(), message, null);
+        return getResponse(HttpStatus.BAD_REQUEST.value(), message, data);
     }
 
     public static <T> ApiResult<T> getFailure(String message) {
