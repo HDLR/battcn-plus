@@ -24,6 +24,8 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import springfox.documentation.annotations.ApiIgnore;
 
+import java.util.Date;
+
 import static com.battcn.framework.common.exception.BattcnException.badRequest;
 
 @Controller
@@ -65,7 +67,8 @@ public class ManagerController extends BaseController {
     @PostMapping(value = "/save")
     @ResponseBody
     public ApiResult<Manager> save(Manager dto) {
-        if (dto != null && dto.getId() != null) {
+        dto.setGmtModified(new Date());
+        if (dto.getId() != null) {
             return ApiResult.getResponse(this.managerService.updateSelectiveById(dto));
         }
         return ApiResult.getResponse(this.managerService.insertSelective(dto));

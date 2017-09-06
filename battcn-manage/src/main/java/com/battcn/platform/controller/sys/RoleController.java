@@ -18,6 +18,8 @@ import com.github.pagehelper.PageInfo;
 
 import springfox.documentation.annotations.ApiIgnore;
 
+import java.util.Date;
+
 import static com.battcn.framework.common.exception.BattcnException.notFound;
 
 @Controller
@@ -61,7 +63,8 @@ public class RoleController extends BaseController {
 	@PostMapping(value = "/save")
 	@ResponseBody
 	public ApiResult<String> save(Role dto) {
-		if (dto != null && dto.getId() != null) {
+		dto.setGmtModified(new Date());
+		if (dto.getId() != null) {
 			return ApiResult.getResponse(this.roleService.updateSelectiveById(dto));
 		}
 		return ApiResult.getResponse(this.roleService.insertSelective(dto));

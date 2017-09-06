@@ -26,41 +26,42 @@ import static com.battcn.framework.common.exception.BattcnException.notFound;
 @Api(value = "菜单管理")
 @ApiIgnore
 public class MenuController extends BaseController {
-	
-	@Autowired
-	private MenuService menuService;
-	
-	@GetMapping("/list")
-	public String list(DataGrid grid) {
-		request.setAttribute("page", this.menuService.listMenuForDataGrid(grid));
-		return "sys/menu/list";
-	}
 
-	@GetMapping(value = "/edit")
-	public String edit(Integer id) {
-		if (id != null) {
-			request.setAttribute("dto",this.menuService.selectById(id).orElseThrow(() -> notFound("该数据已失效")));
-		}
-		request.setAttribute("menus",this.menuService.listMenu());
-		return "sys/menu/edit";
-	}
+    @Autowired
+    private MenuService menuService;
 
-	@BattcnLog(module = "菜单管理", methods = "保存菜单", description = "添加/修改菜单信息")
-	@PostMapping(value = "/save")
-	@ResponseBody
-	public ApiResult<String> save(Menu menu) {
-		this.menuService.saveOrUpdate(menu);
-		return ApiResult.SUCCESS;
-	}
+    @GetMapping("/list")
+    public String list(DataGrid grid) {
+        request.setAttribute("page", this.menuService.listMenuForDataGrid(grid));
+        return "sys/menu/list";
+    }
 
-	@BattcnLog(module = "菜单管理", methods = "移除菜单", description = "删除菜单信息")
-	@PostMapping(value = "/remove")
-	@ResponseBody
-	public ApiResult<String> del(Integer[] ids) {
-		Lists.newArrayList(ids).forEach(id -> this.menuService.deleteById(id));
-		return ApiResult.SUCCESS;
-	}
-	
-	
+    @GetMapping(value = "/edit")
+    public String edit(Integer id) {
+        if (id != null) {
+            request.setAttribute("dto", this.menuService.selectById(id).orElseThrow(() -> notFound("该数据已失效")));
+        }
+        request.setAttribute("menus", this.menuService.listMenu());
+        return "sys/menu/edit";
+    }
+
+    @BattcnLog(module = "菜单管理", methods = "保存菜单", description = "添加/修改菜单信息")
+    @PostMapping(value = "/save")
+    @ResponseBody
+    public ApiResult<String> save(Menu menu) {
+        if (menu != null) {
+            this.menuService.saveOrUpdate(menu);
+        }
+        return ApiResult.SUCCESS;
+    }
+
+    @BattcnLog(module = "菜单管理", methods = "移除菜单", description = "删除菜单信息")
+    @PostMapping(value = "/remove")
+    @ResponseBody
+    public ApiResult<String> del(Integer[] ids) {
+        Lists.newArrayList(ids).forEach(id -> this.menuService.deleteById(id));
+        return ApiResult.SUCCESS;
+    }
+
 
 }

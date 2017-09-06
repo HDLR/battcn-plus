@@ -2,6 +2,7 @@ package com.battcn.platform.service.impl;
 
 import static java.util.stream.Collectors.toList;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -83,7 +84,8 @@ public class MenuServiceImpl extends BaseServiceImpl<Menu> implements MenuServic
 
     @Override
     public void saveOrUpdate(Menu menu) {
-        if (menu != null && menu.getId() != null) {
+        menu.setGmtModified(new Date());
+        if (menu.getId() != null) {
             super.updateSelectiveById(menu);
         } else {
             super.insertSelective(menu);

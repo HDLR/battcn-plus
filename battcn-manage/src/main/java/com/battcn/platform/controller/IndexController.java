@@ -94,18 +94,17 @@ public class IndexController extends BaseController {
     @ApiResponses(value = {@ApiResponse(code = 200, message = "请求成功"), @ApiResponse(code = 404, message = "地址错误"),
             @ApiResponse(code = 500, message = "系统错误,请联系管理人员")})
     public String forward(@PathVariable String oper, @PathVariable Integer menuId, Model model) {
+        if (SessionUtil.getSession() == null) return "redirect:/denied";
         Menu menu = this.menuService.selectById(menuId).orElseThrow(() -> BattcnException.notFound("无访问权限"));
         Integer roleId = SessionUtil.getSession().getRoleId().intValue();
-        List<Operate> op = Optional.ofNullable(this.operateService.listOperateByRoleIdAndMenuId(roleId, menuId))
-                .orElseThrow(() -> BattcnException.notFound("无权限"));
-        if (CollectionUtils.isEmpty(op))
-            return "redirect:/denied";
+        List<Operate> op = Optional.ofNullable(this.operateService.listOperateByRoleIdAndMenuId(roleId, menuId)).orElseThrow(() -> BattcnException.notFound("无权限"));
+        if (CollectionUtils.isEmpty(op)) return "redirect:/denied";
         model.addAttribute("operates", op);
         model.addAttribute("OP", op.get(0));
         model.addAttribute("MENU", menu);// 获取对应的菜单对象
-        String forword = String.format("forward:%s/%s", menu.getChannel(), oper);
-        LOGGER.info("[转发地址] - [{}]", forword);
-        return forword;
+        String forward = String.format("forward:%s/%s", menu.getChannel(), oper);
+        LOGGER.info("[转发地址] - [{}]", forward);
+        return forward;
     }
 
 }

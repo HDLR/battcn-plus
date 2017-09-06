@@ -1,6 +1,7 @@
 package com.battcn.platform.controller.sys;
 
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,22 +22,22 @@ import springfox.documentation.annotations.ApiIgnore;
 @ApiIgnore
 public class RoleOperateController extends BaseController {
 
-	@Autowired
-	MenuService menuService;
-	@Autowired
-	RoleOperateService roleOperateService;
+    @Autowired
+    MenuService menuService;
+    @Autowired
+    RoleOperateService roleOperateService;
 
-	@GetMapping("{roleId}")
-	@ResponseBody
-	public ApiResult<List<RoleOperate>> listOperate(@PathVariable Integer roleId) {
-		return ApiResult.getSuccess(this.roleOperateService.listRoleOperateByRoleId(roleId));
-	}
+    @GetMapping("{roleId}")
+    @ResponseBody
+    public ApiResult<List<RoleOperate>> listOperate(@PathVariable Integer roleId) {
+        return ApiResult.getSuccess(this.roleOperateService.listRoleOperateByRoleId(roleId));
+    }
 
-	@PostMapping("permissions")
-	@ResponseBody
-	public ApiResult<String> savePermissions(Integer operateId[], Integer roleId) {
-		LOGGER.debug("[数据] - [{}] - [{}]", JSON.toJSONString(operateId), roleId);
-		return this.roleOperateService.batchInsertRoleOperate(operateId, roleId);
-	}
+    @PostMapping("permissions")
+    @ResponseBody
+    public ApiResult<String> savePermissions(Integer operateId[], Integer roleId) {
+        LOGGER.debug("[数据] - [{}] - [{}]", JSON.toJSONString(operateId), roleId);
+        return this.roleOperateService.batchInsertRoleOperate(operateId, roleId);
+    }
 
 }

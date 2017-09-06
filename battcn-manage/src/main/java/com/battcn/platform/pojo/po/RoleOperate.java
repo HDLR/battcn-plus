@@ -114,11 +114,13 @@ public class RoleOperate extends RecordEntity {
     	super();
 		this.roleId = roleId;
     }
-    public RoleOperate(Integer roleId, Integer operateId){
+    public RoleOperate(Integer roleId, Integer operateId, Date gmtModified){
     	super();
 		this.roleId = roleId;
 		this.operateId = operateId;
+        this.gmtCreate = gmtCreate;
     }
+
 	public RoleOperate(Integer roleId, Integer operateId, Date gmtCreate, Date gmtModified) {
 		super();
 		this.roleId = roleId;
