@@ -7,10 +7,13 @@ import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.authc.LockedAccountException;
 import org.apache.shiro.authc.SimpleAuthenticationInfo;
 import org.apache.shiro.authc.UnknownAccountException;
+import org.apache.shiro.authc.credential.CredentialsMatcher;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
+import org.apache.shiro.cache.CacheManager;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
+import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.battcn.platform.pojo.dto.ManagerDto;
 import com.battcn.platform.service.ManagerService;
@@ -28,6 +31,43 @@ public class AuthRealm extends AuthorizingRealm {
 	private OperateService operateService;
 
 	/**
+	 * 
+	 */
+	
+	public AuthRealm() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @param cacheManager
+	 * @param matcher
+	 */
+	
+	public AuthRealm(CacheManager cacheManager, CredentialsMatcher matcher) {
+		super(cacheManager, matcher);
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @param cacheManager
+	 */
+	
+	public AuthRealm(CacheManager cacheManager) {
+		super(cacheManager);
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @param matcher
+	 */
+	
+	public AuthRealm(CredentialsMatcher matcher) {
+		super(matcher);
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
 	 * 认证回调函数,登录时调用
 	 * 首先根据传入的用户名获取User信息；然后如果user为空，那么抛出没找到帐号异常UnknownAccountException；
 	 * 如果user找到但锁定了抛出锁定异常LockedAccountException；最后生成AuthenticationInfo信息，
@@ -43,12 +83,15 @@ public class AuthRealm extends AuthorizingRealm {
 		String accountName = (String) token.getPrincipal();
 		ManagerDto user = Optional.ofNullable(managerService.selectManagerByAccount(accountName)).orElseThrow(UnknownAccountException::new);
 		if(!user.getLocked())throw new LockedAccountException();
+		
 		// 从数据库查询出来的账号名和密码,与用户输入的账号和密码对比
 		// 当用户执行登录时,在方法处理上要实现user.login(token);
 		// 然后会自动进入这个类进行认证
 		// 交给AuthenticatingRealm使用CredentialsMatcher进行密码匹配，如果觉得人家的不好可以自定义实现
+//		SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(
+//				accountName, user.getPassword(), getName());
 		SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(
-				accountName, user.getPassword(), getName());
+				accountName, user.getPassword(),ByteSource.Util.bytes(user.getCredential()), getName());
 		SessionUtil.setSession(user);
 		return authenticationInfo;
 	}

@@ -92,6 +92,10 @@ public class Manager extends RecordEntity {
     @Column(name = "gmt_modified")
     private Date gmtModified;
 
+    
+    
+    @Column(name = "salt")
+    private String salt;
     /**
      * 获取自增ID
      *
@@ -188,7 +192,7 @@ public class Manager extends RecordEntity {
      * @return credential - 验证凭证
      */
     public String getCredential() {
-        return credential;
+        return account + salt;
     }
 
     /**
@@ -353,7 +357,15 @@ public class Manager extends RecordEntity {
         return gmtModified;
     }
 
-    /**
+    public String getSalt() {
+		return salt;
+	}
+
+	public void setSalt(String salt) {
+		this.salt = salt;
+	}
+
+	/**
      * 设置最后修改时间
      *
      * @param gmtModified 最后修改时间

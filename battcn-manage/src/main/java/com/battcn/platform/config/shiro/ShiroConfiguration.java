@@ -3,6 +3,8 @@ package com.battcn.platform.config.shiro;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import org.apache.shiro.authc.credential.CredentialsMatcher;
+import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.cache.ehcache.EhCacheManager;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
@@ -35,10 +37,20 @@ public class ShiroConfiguration {
 		return em;
 	}
 
+	//@Bean(name = "hashedCredentialsMatcher")
+	public HashedCredentialsMatcher getCredentialsMatcher(){
+		HashedCredentialsMatcher hashedCredentialsMatcher = new HashedCredentialsMatcher();
+		hashedCredentialsMatcher.setHashAlgorithmName("md5");
+		hashedCredentialsMatcher.setHashIterations(2);
+		return hashedCredentialsMatcher;
+	}
+	
+	
 	@Bean(name = "AuthRealm")
 	public AuthRealm AuthRealm(EhCacheManager cacheManager) {
 		AuthRealm realm = new AuthRealm();
-		realm.setCacheManager(cacheManager);
+		 realm.setCacheManager(cacheManager);
+		 realm.setCredentialsMatcher(getCredentialsMatcher());
 		return realm;
 	}
 
