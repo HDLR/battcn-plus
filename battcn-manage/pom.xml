@@ -75,10 +75,17 @@
 
 	<build>
 		<resources>
-			<resource>
+			  <resource>
 				<directory>src/main/resources</directory>
 				<filtering>false</filtering>
-			</resource>
+			</resource>  
+			<!-- <resource>
+				<directory>src/main/resources</directory>
+				<targetPath>META-INF/resources</targetPath>
+				<includes>
+					<include>**/**</include>
+				</includes>
+			</resource> -->
 			<resource>
 				<directory>src/main/java</directory>
 				<includes>

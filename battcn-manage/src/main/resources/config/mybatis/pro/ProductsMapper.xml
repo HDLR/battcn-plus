@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.battcn.platform.mapper.ProductsMapper" >
+  <resultMap id="BaseResultMap" type="com.battcn.platform.pojo.po.Products" >
+    <!--
+      WARNING - @mbggenerated
+    -->
+    <id column="pro_id" property="proId" jdbcType="VARCHAR" />
+    <result column="product_name" property="productName" jdbcType="VARCHAR" />
+    <result column="img_url" property="imgUrl" jdbcType="VARCHAR" />
+    <result column="parent_id" property="parentId" jdbcType="INTEGER" />
+    <result column="sub_id" property="subId" jdbcType="INTEGER" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <select id="selectByParam" resultType="com.battcn.platform.pojo.dto.ProductsDto">
+  	select t.*,p.type_name parentName ,s.type_name subName from products t
+  	left join product_type p
+  		on t.parent_id = p.type_id
+  	left join product_type s
+  		on t.sub_id = s.type_id
+  	order by t.parent_id,t.sub_id asc	 
+  </select>
+  
+</mapper>

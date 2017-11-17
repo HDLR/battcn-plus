@@ -57,7 +57,7 @@
 			<property name="enableSubPackages" value="true" />
 		</javaClientGenerator>
 
-		<table tableName="t_hello" domainObjectName="Hello" 
+		<table tableName="products" domainObjectName="Products" 
 			enableCountByExample="true" enableDeleteByExample="true"
 			enableSelectByExample="true" enableUpdateByExample="true">
 		</table>

@@ -50,7 +50,7 @@ public class ShiroConfiguration {
 	public AuthRealm AuthRealm(EhCacheManager cacheManager) {
 		AuthRealm realm = new AuthRealm();
 		 realm.setCacheManager(cacheManager);
-		 realm.setCredentialsMatcher(getCredentialsMatcher());
+		// realm.setCredentialsMatcher(getCredentialsMatcher());
 		return realm;
 	}
 
