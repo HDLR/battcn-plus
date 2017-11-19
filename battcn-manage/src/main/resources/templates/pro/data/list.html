@@ -24,7 +24,14 @@ $(function(){
             minimumCountColumns: 2,
             clickToSelect: true,
             columns: [{checkbox: true
-            }, {
+            },{
+                field: 'Number',
+                title: '序号',
+                formatter: function(value, row, index) {  
+                	var options = $('#admin_menu[[${OP.menuId}]]_datagrid').bootstrapTable('getOptions');  
+                    return options.pageSize * (options.pageNumber - 1) + index + 1;  
+                }
+            },{
                 field: 'productName',
                 title: '产品名称',
                 align: 'left',
@@ -58,10 +65,75 @@ $(function(){
     /*]]>*/
 	
 });
+//传递的参数
+function queryParams(params) {
+	return {
+		pageSize : params.limit,
+		pageNum : params.offset / params.limit + 1,
+		sort : params.sort,
+		order : params.order,
+		productName:$.trim( $("#productName").val() ),
+		typeName:$.trim( $("#typeName").val() )
+	}
+}
+//查询
+var serach = 0;
+battcn.admin.menu[[${OP.menuId}]].serach = function(){
+	 if($("#productName").val() !='' || $("#typeName").val() !=''){
+		 $('#admin_menu[[${OP.menuId}]]_datagrid').bootstrapTable('refresh');
+		 serach++;
+	 } else {
+		 if(serach != 0) {
+			 $('#admin_menu[[${OP.menuId}]]_datagrid').bootstrapTable('refresh');
+			 serach = 0;
+		}
+	}
+ }
+ 
+//新增
+battcn.admin.menu[[${OP.menuId}]].add = function(){
+	battcn.showWindow({
+			title:'添加产品数据',
+			href:'/op_edit_[[${OP.menuId}]]',
+			// href:'/pro/data/edit.html',
+			width:'50%',
+			height:'50%',
+			okhandler:function(){
+				battcn.admin.menu[[${OP.menuId}]].save();
+			},
+			cancelhandler:function(){ 
+				battcn.closeWindow();
+			}
+		}); 
+	
+}
 </script>
 <div class="wrapper wrapper-content animated fadeInRight">
 	<div class="ibox float-e-margins">
 		<div class="ibox-content">
+			<div class="panel panel-default">
+				<div class="panel-body">
+					<form id="formSearch" class="form-horizontal">
+						<div class="form-group" style="margin-top: 15px">
+<!-- 							<label class="control-label col-sm-1">账号</label> -->
+							<div class="col-sm-3">
+								<input type="text" class="form-control" id="productName" placeholder="产品名称"/>
+							</div>
+<!-- 							<label class="control-label col-sm-1">名称</label> -->
+							<div class="col-sm-3">
+								<input type="text" class="form-control" id="typeName" placeholder="分类名"/>
+							</div>
+							<div class="col-sm-4" style="text-align: left;">
+								<button type="button"
+									th:onclick="@{battcn.admin.menu{menuId}.serach()(menuId=${OP.menuId})}"
+									class="btn btn-primary">查询</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+			<div th:include="toolbar :: toolbar-operate"></div>
+		
 			<div class="table-responsive">
 				<table th:id="@{admin_menu{menuId}_datagrid(menuId=${OP.menuId})}"
 					data-toolbar="#toolbar" data-show-refresh="true"

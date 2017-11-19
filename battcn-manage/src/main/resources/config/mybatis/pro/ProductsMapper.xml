@@ -19,6 +19,10 @@
   		on t.parent_id = p.type_id
   	left join product_type s
   		on t.sub_id = s.type_id
+  	where 1=1
+  	<if test="productName != null and productName != ''">
+  		and t.product_name like concat('%',#{productName:VARCHAR},'%')
+  	</if>
   	order by t.parent_id,t.sub_id asc	 
   </select>
   

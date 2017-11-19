@@ -3,6 +3,7 @@ package com.battcn.platform.mapper;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import com.battcn.framework.mybatis.mapper.BaseMapper;
 import com.battcn.platform.pojo.dto.ProductsDto;
@@ -20,5 +21,5 @@ public interface ProductsMapper extends BaseMapper<Products> {
 	 * @author zzwen6
 	 * @修改记录: <br/>
 	 */
-	List<ProductsDto> selectByParam(String name);
+	List<ProductsDto> selectByParam(@Param("productName")String productName);
 }

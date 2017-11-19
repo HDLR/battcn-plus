@@ -15,13 +15,13 @@ import com.battcn.framework.common.exception.BattcnException;
 import com.battcn.framework.mybatis.page.DataGrid;
 import com.battcn.platform.controller.BaseController;
 import com.battcn.platform.pojo.dto.ProductsDto;
-import com.battcn.platform.pojo.po.Products;
 import com.battcn.platform.service.ProductsService;
 import com.github.pagehelper.PageInfo;
 
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+import springfox.documentation.annotations.ApiIgnore;
 
 /**
  * File Name: com.battcn.platform.controller.pro.ProductController.java
@@ -39,14 +39,19 @@ public class ProductController extends BaseController{
 	public String list() throws BattcnException {
 		return "pro/data/list";
 	}
+	@ApiIgnore
+	@GetMapping("/edit")
+	public String edit(Integer id)  {
+		return "/pro/data/edit";
+	}
 	
 	@RequestMapping(value = "/query")
 	@ResponseBody
 	@ApiOperation(value = "根据分页条件查询分页的结果集", httpMethod = "GET", produces = "application/json")
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "请求成功"), @ApiResponse(code = 404, message = "地址错误"),
 			@ApiResponse(code = 500, message = "系统错误,请联系管理人员") })
-	public PageInfo<ProductsDto> query(DataGrid grid,String name){
-		return productsService.listForDataGridExchange(grid,name);
+	public PageInfo<ProductsDto> query(DataGrid grid,String productName,String typeName){
+		return productsService.listForDataGridExchange(grid,productName);
 	}
 	
 }
