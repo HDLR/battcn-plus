@@ -17,8 +17,8 @@ $(function(){
             pageList: [10, 25, 50, 100, 200],
             search: false,
             sidePagination:'server',
-            idField: 'pro_id',
-            uniqueId: 'pro_id',
+            idField: 'proId',
+            uniqueId: 'proId',
             responseHandler: responseHandler,
             queryParams: queryParams,
             minimumCountColumns: 2,
@@ -106,6 +106,37 @@ battcn.admin.menu[[${OP.menuId}]].add = function(){
 			}
 		}); 
 	
+}
+
+//编辑
+battcn.admin.menu[[${OP.menuId}]].edit = function(){
+	var rows = $('#admin_menu[[${OP.menuId}]]_datagrid').bootstrapTable('getSelections');
+	if(rows.length == 0){
+		battcn.toastrsAlert({
+		     code:'info',
+		     msg:'请选择你要编辑的记录'
+		});
+		return;
+	}
+	if(rows.length > 1){
+		battcn.toastrsAlert({
+		     code:'warning',
+		     msg:'sorry , 只能选择一条进行编辑'
+		});
+		return;
+	}
+	battcn.showWindow({
+		title:'编辑产品数据',
+		href: '/op_edit_[[${OP.menuId}]]?id='+rows[0].proId,
+		width:'50%',
+		height:'50%',
+		okhandler:function(){
+			battcn.admin.menu[[${OP.menuId}]].save();
+		},
+		cancelhandler:function(){
+			battcn.closeWindow();
+		}
+	});
 }
 </script>
 <div class="wrapper wrapper-content animated fadeInRight">

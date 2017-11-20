@@ -1,6 +1,9 @@
 package com.battcn.platform.pojo.po;
 
 import com.battcn.platform.pojo.RecordEntity;
+
+import java.util.Date;
+
 import javax.persistence.*;
 @Table(name = "products")
 public class Products extends RecordEntity {
@@ -8,7 +11,7 @@ public class Products extends RecordEntity {
 
 	@Id
     @Column(name = "pro_id")
-    private String proId;
+    private Integer proId;
 
     @Column(name = "product_name")
     private String productName;
@@ -21,21 +24,34 @@ public class Products extends RecordEntity {
 
     @Column(name = "sub_id")
     private Integer subId;
-
+    @Column(name = "description")
     private String description;
+    @Column(name = "locked")
+    private Integer locked;
+    
+    /**
+     * 创建时间
+     */
+    @Column(name = "gmt_create")
+    private Date gmtCreate;
 
+    /**
+     * 最后修改时间
+     */
+    @Column(name = "gmt_modified")
+    private Date gmtModified;
     /**
      * @return pro_id
      */
-    public String getProId() {
+    public Integer getProId() {
         return proId;
     }
 
     /**
      * @param proId
      */
-    public void setProId(String proId) {
-        this.proId = proId == null ? null : proId.trim();
+    public void setProId(Integer proId) {
+        this.proId  =  proId;
     }
 
     /**
@@ -107,4 +123,29 @@ public class Products extends RecordEntity {
     public void setDescription(String description) {
         this.description = description == null ? null : description.trim();
     }
+
+	public Integer getLocked() {
+		return locked;
+	}
+
+	public void setLocked(Integer locked) {
+		this.locked = locked;
+	}
+
+	public Date getGmtCreate() {
+		return gmtCreate;
+	}
+
+	public void setGmtCreate(Date gmtCreate) {
+		this.gmtCreate = gmtCreate;
+	}
+
+	public Date getGmtModified() {
+		return gmtModified;
+	}
+
+	public void setGmtModified(Date gmtModified) {
+		this.gmtModified = gmtModified;
+	}
+    
 }

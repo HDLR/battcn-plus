@@ -5,6 +5,8 @@
  */
 package com.battcn.platform.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +14,7 @@ import com.battcn.framework.mybatis.page.DataGrid;
 import com.battcn.framework.mybatis.service.impl.BaseServiceImpl;
 import com.battcn.platform.mapper.ProductsMapper;
 import com.battcn.platform.pojo.dto.ProductsDto;
+import com.battcn.platform.pojo.po.ProductType;
 import com.battcn.platform.pojo.po.Products;
 import com.battcn.platform.service.ProductsService;
 import com.github.pagehelper.PageHelper;
@@ -33,5 +36,12 @@ public class ProductsServiceImpl extends BaseServiceImpl<Products> implements Pr
 		// grid.getOrderBy();
 		return PageHelper.startPage(grid.getPageNum(), grid.getPageSize()).doSelectPageInfo(() -> productsMapper.selectByParam(name));
 		  
+	}
+
+	 
+	@Override
+	public List<ProductType> listTypeByParentIds(int[] ids) {
+		 
+		return productsMapper.listTypeByParentIds(ids);
 	}
 }

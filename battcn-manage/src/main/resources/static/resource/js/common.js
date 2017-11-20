@@ -52,7 +52,7 @@
                 console.info(data);
                 if (data.messageId === 200) {
                     if (typeof callback === "function") {
-                        callback();
+                        callback(data);
                     };
                 };
                 battcn.toastrsAlert({

@@ -12,7 +12,13 @@
     <result column="sub_id" property="subId" jdbcType="INTEGER" />
     <result column="description" property="description" jdbcType="VARCHAR" />
   </resultMap>
-  
+  <resultMap id="BaseProductTypeResultMap" type="com.battcn.platform.pojo.po.ProductType" >
+    <id column="type_id" property="typeId" jdbcType="INTEGER" />
+    <result column="type_name" property="typeName" jdbcType="VARCHAR" />
+    <result column="parent_id" property="parentId" jdbcType="INTEGER" />
+    <result column="url" property="url" jdbcType="VARCHAR" />
+    <result column="sort" property="sort" jdbcType="INTEGER" />
+  </resultMap>
   <select id="selectByParam" resultType="com.battcn.platform.pojo.dto.ProductsDto">
   	select t.*,p.type_name parentName ,s.type_name subName from products t
   	left join product_type p
@@ -25,5 +31,18 @@
   	</if>
   	order by t.parent_id,t.sub_id asc	 
   </select>
+  
+  <select id="listTypeByParentIds" resultMap="BaseProductTypeResultMap">
+  	select * from product_type
+  	where 1=1
+  	<if test="ids != null and ids.length > 0">
+  		and parent_id in
+  		<foreach collection="ids" open="(" separator="," close=")" item="pid">
+  			#{pid:INTEGER}
+  		</foreach>
+  	</if>
+  
+  </select>
+  
   
 </mapper>

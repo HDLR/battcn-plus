@@ -5,9 +5,12 @@
  */
 package com.battcn.platform.service;
 
+import java.util.List;
+
 import com.battcn.framework.mybatis.page.DataGrid;
 import com.battcn.framework.mybatis.service.BaseService;
 import com.battcn.platform.pojo.dto.ProductsDto;
+import com.battcn.platform.pojo.po.ProductType;
 import com.battcn.platform.pojo.po.Products;
 import com.github.pagehelper.PageInfo;
 
@@ -28,5 +31,15 @@ public interface ProductsService extends BaseService<Products>{
 	 * @修改记录: <br/>
 	 */
 	PageInfo<ProductsDto> listForDataGridExchange(DataGrid grid,String name);
+
+	/**
+	 * listTypeByParentIds:<br>
+	 * 
+	 * @CreateTime 2017年11月20日 上午11:58:34
+	 * @param is
+	 * @author zzwen6
+	 * @修改记录: <br/>
+	 */
+	List<ProductType> listTypeByParentIds(int[] ids);
 
 }
