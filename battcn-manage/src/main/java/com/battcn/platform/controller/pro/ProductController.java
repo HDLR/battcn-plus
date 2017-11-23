@@ -5,13 +5,19 @@
  */
 package com.battcn.platform.controller.pro;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -39,6 +45,10 @@ import springfox.documentation.annotations.ApiIgnore;
 @RequestMapping("/pro/data")
 public class ProductController extends BaseController{
 
+	@Value("${img.path}")
+	protected String imgPath;
+	@Value("${db.img.path}")
+	protected String dbImgPath;
 	@Autowired
 	ProductsService productsService;
 	
@@ -75,12 +85,23 @@ public class ProductController extends BaseController{
 	}
 	
 	
-	@RequestMapping(value = "/save")
+	@RequestMapping(value = "/save",method = RequestMethod.POST)
 	@ResponseBody
-	public ApiResult<Products> save(Products products, MultipartFile file){
+	public ApiResult<Products> save(Products products,@RequestParam("file") MultipartFile file) throws IllegalStateException, IOException{
 		products.setGmtModified(new Date());
-		
 		// 图片 TODO
+		if (!file.isEmpty()) {
+			String uuid = UUID.randomUUID().toString();
+			String imgType = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf("."), file.getOriginalFilename().length());
+			
+			String imgName = uuid + imgType;
+			file.transferTo(new File(imgPath + imgName)); // 存盘地址
+			
+			products.setImgUrl( dbImgPath + imgName ); // 数据库地址
+			
+		}		
+		
+		
 		if (products.getProId() != null) {
 			return ApiResult.getResponse( this.productsService.updateSelectiveById(products));
 		}else {

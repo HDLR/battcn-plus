@@ -77,16 +77,20 @@ function responseHandler(res) {
 			<div class="nav-close">
 				<i class="fa fa-times-circle"></i>
 			</div>
+<!-- 			https://avatars0.githubusercontent.com/u/13137664?s=400&v=4 http://static.battcn.com/common/favicon.png-->
 			<div class="sidebar-collapse">
 				<ul class="nav" id="side-menu">
 					<li class="nav-header">
 						<div class="dropdown profile-element">
 							<span><img alt="image" class="img-circle"
-								src="http://static.battcn.com/common/favicon.png" width="64px"
+								th:src="@{/resource/img/head.png}" width="64px"
 								height="64px" /></span> <a data-toggle="dropdown"
 								class="dropdown-toggle" href="#"> <span class="clear">
-									<span class="block m-t-xs"><strong class="font-bold" th:text="${username}"></strong></span>
-									<span class="text-muted text-xs block">超级管理员<b class="caret"></b></span>
+									<span class="text-muted text-xs block"  th:inline = "text">
+									[[${session.USER_SESSION_KEY.roleName}]]
+									<b class="caret"></b>
+									</span>
+									<span class="text-muted text-xs block" th:if="false">超级管理员<b class="caret"></b></span>
 							</span>
 							</a>
 							<ul class="dropdown-menu animated fadeInRight m-t-xs">

@@ -13,15 +13,41 @@ $(document).ready(function() {
 $(function() {
   	battcn.admin.menu[[${OP.menuId}]].save = function(obj) {
 		var $form = $("#menu[[${OP.menuId}]]Form");
-		if ($form.valid()) {
+		 
+		var formData = new FormData($("#menu[[${OP.menuId}]]Form")[0]);  
+		console.log(formData);
+		//return;
+		/*if ($form.valid()) {
 			battcn.ajaxJson({
 				url: "/op_save_[[${OP.menuId}]]",
-				data: $form.serializeArray()
+				data: formData
 			}, function() {
 				battcn.closeWindow();
 				$('#admin_menu[[${OP.menuId}]]_datagrid').bootstrapTable('refresh');
 			});
-		};
+		};*/
+		$.ajax({
+			url: "/op_save_[[${OP.menuId}]]",
+			type: 'POST',
+			processData:false,
+			contentType: false,  
+			data: formData,
+		})
+		.done(function(data) {
+			battcn.closeWindow();
+			$('#admin_menu[[${OP.menuId}]]_datagrid').bootstrapTable('refresh');
+			battcn.toastrsAlert({
+                code: data.messageId === 200 ? 'success' : 'error',
+                msg: data.message
+            });
+		})
+		.fail(function(data) {
+			console.log("error");
+		})
+		.always(function(data) {
+			console.log("complete");
+		});
+		
 	};  
 	
 	 
@@ -32,7 +58,7 @@ $(function() {
 
  <div class="ibox float-e-margins animated fadeInRight">
 	<div class="ibox-content">
-		<form class="form-horizontal m-t required-validate" th:id="@{menu{menuId}Form(menuId=${OP.menuId})}" method="POST" >
+		<form class="form-horizontal m-t required-validate" th:id="@{menu{menuId}Form(menuId=${OP.menuId})}" method="POST" enctype="multipart/form-data">
 			<input type="hidden" name="proId" th:value="${dto?.proId}" />
 			<div class="form-group">
 				<label class="col-sm-3 control-label">产品名称：</label>
@@ -62,7 +88,8 @@ $(function() {
 			<div class="form-group">
 				<label class="col-sm-3 control-label">图片：</label>
 				<div class="col-sm-8">
-					<input type="file" name='img_file'/>
+					<input type="file" name='file' id="file"/>
+					<img alt="" th:src="${dto?.imgUrl}" style="height: 200px;" id="show" />
 					<!-- <input name="password" id="password" class="form-control" th:value="${dto?.password}"
 						validate="{required:true,minlength:4,maxlength:20,messages:{required:'请填写密码',minlength:'密码必须大于等于4',maxlength:'密码必须小于等于20'}}" type="password"/>
 					<span style="color: red;" th:if="${dto?.password}">不填为则不修改密码</span> -->
@@ -122,6 +149,30 @@ $(function() {
 		}
 		
 	});
+	
+	$('#file').change(function(event) {
+		 var file = event.target.files[0];
+		 preview2(file);
+	});
+	function preview1(file) {
+        var img = new Image(), url = img.src = URL.createObjectURL(file)
+        var $img = $(img)
+        img.onload = function() {
+            URL.revokeObjectURL(url)
+            $('#show').empty().append($img)
+        }
+    }
+	// 通过创建数据URL进行转换图片文件
+	// 在图片非常大时，浏览器可能会假死
+    function preview2(file) {
+        var reader = new FileReader()
+        reader.onload = function(e) {
+            var $img = $('#show').attr("src", e.target.result)
+            $('#show').empty().append($img)
+        }
+        reader.readAsDataURL(file)
+    }
+	
 	/*]]>*/
 </script>
 </html>

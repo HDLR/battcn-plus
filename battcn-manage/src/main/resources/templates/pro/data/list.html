@@ -59,7 +59,21 @@ $(function(){
                 title: '描述',
                 align: 'center',
                 valign: 'middle'
-            }   ]   
+            } , {
+                field: 'gmtCreate',
+                title: '创建时间',
+                align: 'center',
+                valign: 'middle',
+                formatter:function(value,row,index){return new Date(value).pattern("yyyy/MM/dd HH:mm:ss")}
+
+            } ,{
+            	field: 'locked',
+            	title: '状态',
+            	align: 'center',
+            	valign: 'middle',
+              	formatter: function(value,row,index){return value == 1 ? '<i class="fa fa-check text-navy"></i>' : '<i class="fa fa-close text-danger"></i>'}
+
+            } ]   
 			
 	     });
     /*]]>*/
